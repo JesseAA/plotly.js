@@ -13,7 +13,6 @@ var hasColorscale = require('../../components/colorscale/helpers').hasColorscale
 var colorscaleCalc = require('../../components/colorscale/calc');
 var arraysToCalcdata = require('./arrays_to_calcdata');
 var calcSelection = require('../scatter/calc_selection');
-var alignPeriod = require('../scatter/align_period');
 
 module.exports = function calc(gd, trace) {
     var xa = Axes.getFromId(gd, trace.xaxis || 'x');
@@ -27,11 +26,9 @@ module.exports = function calc(gd, trace) {
     if(trace.orientation === 'h') {
         size = xa.makeCalcdata(trace, 'x', sizeOpts);
         pos = ya.makeCalcdata(trace, 'y');
-        pos = alignPeriod(trace, 'y', pos);
     } else {
         size = ya.makeCalcdata(trace, 'y', sizeOpts);
         pos = xa.makeCalcdata(trace, 'x');
-        pos = alignPeriod(trace, 'x', pos);
     }
 
     // create the "calculated data" to plot

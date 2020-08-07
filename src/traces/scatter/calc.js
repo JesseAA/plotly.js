@@ -18,7 +18,6 @@ var subTypes = require('./subtypes');
 var calcColorscale = require('./colorscale_calc');
 var arraysToCalcdata = require('./arrays_to_calcdata');
 var calcSelection = require('./calc_selection');
-var alignPeriod = require('./align_period');
 
 function calc(gd, trace) {
     var fullLayout = gd._fullLayout;
@@ -26,9 +25,6 @@ function calc(gd, trace) {
     var ya = Axes.getFromId(gd, trace.yaxis || 'y');
     var x = xa.makeCalcdata(trace, 'x');
     var y = ya.makeCalcdata(trace, 'y');
-
-    x = alignPeriod(trace, 'x', x);
-    y = alignPeriod(trace, 'y', y);
 
     var serieslen = trace._length;
     var cd = new Array(serieslen);

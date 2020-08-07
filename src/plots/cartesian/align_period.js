@@ -8,11 +8,11 @@
 
 'use strict';
 
-module.exports = function alignPeriod(trace, ax, vals) {
-    var periodAlignment = trace[ax + 'periodalignment'];
+module.exports = function alignPeriod(trace, axLetter, vals) {
+    var periodAlignment = trace[axLetter + 'periodalignment'];
     if(!periodAlignment || periodAlignment === 'start') return vals;
 
-    var delta = (periodAlignment === 'end' ? 1 : 0.5) * trace[ax + 'period'];
+    var delta = (periodAlignment === 'end' ? 1 : 0.5) * trace[axLetter + 'period'];
     for(var i = 0; i < vals.length; i++) {
         vals[i] += delta;
     }

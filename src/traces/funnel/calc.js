@@ -11,7 +11,6 @@
 var Axes = require('../../plots/cartesian/axes');
 var arraysToCalcdata = require('./arrays_to_calcdata');
 var calcSelection = require('../scatter/calc_selection');
-var alignPeriod = require('../scatter/align_period');
 var BADNUM = require('../../constants/numerical').BADNUM;
 
 module.exports = function calc(gd, trace) {
@@ -22,11 +21,9 @@ module.exports = function calc(gd, trace) {
     if(trace.orientation === 'h') {
         size = xa.makeCalcdata(trace, 'x');
         pos = ya.makeCalcdata(trace, 'y');
-        pos = alignPeriod(trace, 'y', pos);
     } else {
         size = ya.makeCalcdata(trace, 'y');
         pos = xa.makeCalcdata(trace, 'x');
-        pos = alignPeriod(trace, 'x', pos);
     }
 
     // create the "calculated data" to plot
