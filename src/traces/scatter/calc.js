@@ -18,17 +18,7 @@ var subTypes = require('./subtypes');
 var calcColorscale = require('./colorscale_calc');
 var arraysToCalcdata = require('./arrays_to_calcdata');
 var calcSelection = require('./calc_selection');
-
-function applyPeriodAlignment(trace, ax, vals) {
-    var periodAlignment = trace[ax + 'periodalignment'];
-    if(!periodAlignment || periodAlignment === 'start') return vals;
-
-    var delta = (periodAlignment === 'end' ? 1 : 0.5) * trace[ax + 'period'];
-    for(var i = 0; i < vals.length; i++) {
-        vals[i] += delta;
-    }
-    return vals;
-}
+var alignPeriod = require('./align_period');
 
 function calc(gd, trace) {
     var fullLayout = gd._fullLayout;
@@ -37,8 +27,8 @@ function calc(gd, trace) {
     var x = xa.makeCalcdata(trace, 'x');
     var y = ya.makeCalcdata(trace, 'y');
 
-    x = applyPeriodAlignment(trace, 'x', x);
-    y = applyPeriodAlignment(trace, 'y', y);
+    x = alignPeriod(trace, 'x', x);
+    y = alignPeriod(trace, 'y', y);
 
     var serieslen = trace._length;
     var cd = new Array(serieslen);
