@@ -26,7 +26,7 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
         return;
     }
 
-    handlePeriodDefaults(traceIn, traceOut, layout, coerce);
+    handlePeriodDefaults(traceIn, traceOut, layout, coerce, {x: true});
 
     coerce('line.width');
 

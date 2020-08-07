@@ -24,7 +24,7 @@ function supplyDefaults(traceIn, traceOut, defaultColor, layout) {
     handleSampleDefaults(traceIn, traceOut, coerce, layout);
     if(traceOut.visible === false) return;
 
-    handlePeriodDefaults(traceIn, traceOut, layout, coerce, {x: true});
+    handlePeriodDefaults(traceIn, traceOut, layout, coerce);
 
     var hasPreCompStats = traceOut._hasPreCompStats;
 
