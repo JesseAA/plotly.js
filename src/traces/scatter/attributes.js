@@ -95,16 +95,6 @@ module.exports = {
             'on the x axis.'
         ].join(' ')
     },
-    xperiod0: {
-        valType: 'any',
-        role: 'info',
-        editType: 'calc',
-        description: [
-            'Only relevant when the axis `type` is *date*.',
-            'A specific boundary point timestamp which is used to compute all boundaries',
-            'on the x axis.'
-        ].join(' ')
-    },
     xperiodalignment: {
         valType: 'enumerated',
         values: [
@@ -128,16 +118,6 @@ module.exports = {
         description: [
             'Only relevant when the axis `type` is *date*.',
             'Sets the period positioning in milliseconds',
-            'on the y axis.'
-        ].join(' ')
-    },
-    yperiod0: {
-        valType: 'any',
-        role: 'info',
-        editType: 'calc',
-        description: [
-            'Only relevant when the axis `type` is *date*.',
-            'A specific boundary point timestamp which is used to compute all boundaries',
             'on the y axis.'
         ].join(' ')
     },

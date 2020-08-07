@@ -11,13 +11,11 @@
 module.exports = function handlePeriodDefaults(traceIn, traceOut, layout, coerce) {
     var xperiodalignment = coerce('xperiodalignment');
     if(xperiodalignment !== 'start') {
-        var xperiod = coerce('xperiod');
-        if(xperiod) coerce('xperiod0');
+        coerce('xperiod');
     }
 
     var yperiodalignment = coerce('yperiodalignment');
     if(yperiodalignment !== 'start') {
-        var yperiod = coerce('yperiod');
-        if(yperiod) coerce('yperiod0');
+        coerce('yperiod');
     }
 };
