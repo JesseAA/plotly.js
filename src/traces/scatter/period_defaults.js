@@ -8,14 +8,25 @@
 
 'use strict';
 
-module.exports = function handlePeriodDefaults(traceIn, traceOut, layout, coerce) {
-    var xperiodalignment = coerce('xperiodalignment');
-    if(xperiodalignment !== 'start') {
-        coerce('xperiod');
+module.exports = function handlePeriodDefaults(traceIn, traceOut, layout, coerce, opts) {
+    if(!opts) {
+        opts = {
+            x: true,
+            y: true
+        };
     }
 
-    var yperiodalignment = coerce('yperiodalignment');
-    if(yperiodalignment !== 'start') {
-        coerce('yperiod');
+    if(opts.x) {
+        var xperiodalignment = coerce('xperiodalignment');
+        if(xperiodalignment !== 'start') {
+            coerce('xperiod');
+        }
+    }
+
+    if(opts.y) {
+        var yperiodalignment = coerce('yperiodalignment');
+        if(yperiodalignment !== 'start') {
+            coerce('yperiod');
+        }
     }
 };
