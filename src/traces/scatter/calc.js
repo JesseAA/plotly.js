@@ -19,12 +19,27 @@ var calcColorscale = require('./colorscale_calc');
 var arraysToCalcdata = require('./arrays_to_calcdata');
 var calcSelection = require('./calc_selection');
 
+function applyPeriodAlignment(trace, ax, vals) {
+    var periodAlignment = trace[ax + 'periodalignment'];
+    if(!periodAlignment || periodAlignment === 'start') return vals;
+
+    var delta = (periodAlignment === 'end' ? 1 : 0.5) * trace[ax + 'period'];
+    for(var i = 0; i < vals.length; i++) {
+        vals[i] += delta;
+    }
+    return vals;
+}
+
 function calc(gd, trace) {
     var fullLayout = gd._fullLayout;
     var xa = Axes.getFromId(gd, trace.xaxis || 'x');
     var ya = Axes.getFromId(gd, trace.yaxis || 'y');
     var x = xa.makeCalcdata(trace, 'x');
     var y = ya.makeCalcdata(trace, 'y');
+
+    x = applyPeriodAlignment(trace, 'x', x);
+    y = applyPeriodAlignment(trace, 'y', y);
+
     var serieslen = trace._length;
     var cd = new Array(serieslen);
     var ids = trace.ids;
